@@ -1,14 +1,18 @@
 <script lang="ts">
+import MostrarReceitas from './MostrarReceitas.vue';
 import SelecionarIngredientes from './SelecionarIngredientes.vue';
 import SuaLista from './SuaLista.vue';
+
+type Pagina = 'SelecionarIngredientes' | 'MostrarReceitas';
 
 export default {
   data() {
     return {
       ingredientes: [] as string[],
+      conteudo: 'SelecionarIngredientes' as Pagina,
     };
   },
-  components: { SelecionarIngredientes, SuaLista},
+  components: { SelecionarIngredientes, SuaLista, MostrarReceitas },
   methods: {
     adicionarIngrediente(ingrediente: string) {
       this.ingredientes.push(ingrediente);
@@ -17,6 +21,9 @@ export default {
       this.ingredientes = this.ingredientes.filter(
         (ilist) => ilist !== ingrediente
       );
+    },
+    alteraConteudo(pagina: Pagina) {
+      this.conteudo = pagina;
     },
   },
 };
@@ -27,9 +34,13 @@ export default {
     <SuaLista :ingredientes="ingredientes" />
 
     <SelecionarIngredientes
+      v-if="conteudo === 'SelecionarIngredientes'"
       @adicionar-ingrediente="adicionarIngrediente"
       @remover-ingrediente="removerIngrediente"
+      @altera-conteudo="alteraConteudo('MostrarReceitas')"
     />
+
+    <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'" />
   </main>
 </template>
 

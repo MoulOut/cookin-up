@@ -17,7 +17,7 @@ export default {
     this.receitas = await obterReceitas();
   },
   components: { CardCategoria, BotaoPrincipal },
-  emits: ['adicionarIngrediente', 'removerIngrediente'],
+  emits: ['adicionarIngrediente', 'removerIngrediente','AlteraConteudo'],
 };
 </script>
 
@@ -43,7 +43,7 @@ export default {
       *Atenção: consideramos que você tem em casa sal, pimenta e água.
     </p>
 
-    <BotaoPrincipal texto="Buscar Receitas!" />
+    <BotaoPrincipal texto="Buscar Receitas!" @click="$emit('AlteraConteudo')"/>
   </section>
 </template>
 
