@@ -40,7 +40,10 @@ export default {
       @altera-conteudo="alteraConteudo('MostrarReceitas')"
     />
 
-    <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'" />
+    <MostrarReceitas
+      v-else-if="conteudo === 'MostrarReceitas'"
+      @editar-receitas="alteraConteudo('SelecionarIngredientes')"
+    />
   </main>
 </template>
 

@@ -1,7 +1,6 @@
 <script lang="ts">
 import { obterCategorias, obterReceitas } from '@/http';
 import type ICategoria from '@/interfaces/ICategoria';
-import type IReceita from '@/interfaces/IReceitas';
 import CardCategoria from './CardCategoria.vue';
 import BotaoPrincipal from './BotaoPrincipal.vue';
 
@@ -9,12 +8,10 @@ export default {
   data() {
     return {
       categorias: [] as ICategoria[],
-      receitas: [] as IReceita[],
     };
   },
   async created() {
     this.categorias = await obterCategorias();
-    this.receitas = await obterReceitas();
   },
   components: { CardCategoria, BotaoPrincipal },
   emits: ['adicionarIngrediente', 'removerIngrediente','AlteraConteudo'],
