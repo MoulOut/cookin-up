@@ -44,6 +44,7 @@ export default {
       <MostrarReceitas
         v-else-if="conteudo === 'MostrarReceitas'"
         @editar-receitas="alteraConteudo('SelecionarIngredientes')"
+        :ingredientes="ingredientes"
       />
     </KeepAlive>
   </main>
